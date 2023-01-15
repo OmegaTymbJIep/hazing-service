@@ -1,5 +1,5 @@
-use serde_derive::Deserialize;
 use config::{ConfigError, File};
+use serde_derive::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Config {
@@ -26,8 +26,8 @@ pub struct Database {
 impl Config {
     pub fn new(config_path: String) -> Result<Self, ConfigError> {
         config::Config::builder()
-            .add_source(File::with_name(config_path.as_str())
-            .required(true))
-            .build()?.try_deserialize()
+            .add_source(File::with_name(config_path.as_str()).required(true))
+            .build()?
+            .try_deserialize()
     }
 }

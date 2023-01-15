@@ -1,4 +1,4 @@
-use clap::{ValueEnum, Parser, Subcommand};
+use clap::{Parser, Subcommand, ValueEnum};
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -20,13 +20,13 @@ pub enum Commands {
     Migrate {
         #[clap(default_value_t = MigrateMode::Up)]
         migrate_mod: MigrateMode,
-    }
+    },
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 pub enum MigrateMode {
     Up,
-    Down
+    Down,
 }
 
 impl std::fmt::Display for MigrateMode {
