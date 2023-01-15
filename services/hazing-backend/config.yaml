@@ -1,0 +1,8 @@
+listener:
+  address: "127.0.0.1:3000"
+
+logger:
+  level: "debug"
+
+database:
+  address: "postgresql://hazing-backend:hazing-backend@localhost:5432/hazing-backend"
