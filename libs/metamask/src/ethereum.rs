@@ -40,9 +40,9 @@ impl EthereumProvider {
         method: String,
         params: Vec<JsValue>,
     ) -> Result<JsValue, RequestError> {
-        const METAMASK_REQUEST_METHOD: &str = "request";
+        const REQUEST_METHOD: &str = "request";
 
-        let request_method = js_sys::Reflect::get(&self.raw, &METAMASK_REQUEST_METHOD.into())
+        let request_method = js_sys::Reflect::get(&self.raw, &REQUEST_METHOD.into())
             .map_err(|_| RequestError::NoRequestMethod)?;
 
         let request_method = request_method
@@ -69,13 +69,13 @@ impl EthereumProvider {
             params_js_array.push(&param);
         }
 
-        let params = JsValue::default();
+        let params = js_sys::Object::new();
         js_sys::Reflect::set(&params, &"method".into(), &method.into())
             .expect_throw("failed to add method property");
 
         js_sys::Reflect::set(&params, &"params".into(), &params_js_array)
-            .expect_throw("failed to add method property");
+            .expect_throw("failed to add params property");
 
-        params
+        params.into()
     }
 }
