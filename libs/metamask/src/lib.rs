@@ -4,6 +4,7 @@ pub mod transaction;
 use ethereum::EthereumProvider;
 use js_sys::Array;
 use wasm_bindgen::JsValue;
+use web_sys::Window;
 
 #[derive(Clone)]
 pub struct Metamask {
@@ -48,5 +49,15 @@ impl Metamask {
     pub fn selected_account(&self) -> Option<String> {
         // TODO:
         self.eth.selected_account().unwrap_or_default().as_string()
+    }
+
+    /// TODO: refactor, copy of EthereumProvider::new
+    pub fn is_connected(window: &Window) -> bool {
+        const ETHEREUM_PROVIDER: &'static str = "ethereum";
+
+        let eth =
+            js_sys::Reflect::get(&window, &ETHEREUM_PROVIDER.into()).unwrap_or(JsValue::UNDEFINED);
+
+        !eth.is_undefined()
     }
 }
