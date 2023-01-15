@@ -1,0 +1,42 @@
+[package]
+name = "hazing-backend"
+version = "0.0.1"
+edition = "2021"
+
+[dependencies]
+
+# Logging
+simplelog = { version = "0.12.0", features = ["termcolor"] }
+log = "0.4.17"
+
+# DB
+sqlx = { version = "0.6.2", features = ["runtime-async-std-rustls", "chrono", "postgres", "uuid"] }
+sea-query = { version = "0.28.2", features = ["with-uuid"]}
+sea-query-binder = { version = "0.3.0", features = ["sqlx-postgres", "with-uuid"] }
+uuid = { version = "1.2.2", features = ["serde", "v4"] }
+
+# Async
+tokio = { version = "1.24.1", features = ["full"] }
+async-trait = "0.1.57"
+
+# Command line argument parses
+clap = { version = "4.0.32", features = ["derive", "cargo"] }
+
+# Convinient errors
+thiserror = "1.0.38"
+
+# Easy config parsing
+config = "0.13.3"
+
+# NEAR
+near-sdk = "4.1.1"
+near-crypto = "0.15.0"
+near-primitives = "0.15.0"
+near-chain-configs = "0.15.0"
+near-jsonrpc-primitives = "0.15.0"
+near-jsonrpc-client = "0.4.1"
+
+# Serealization and Deserealization
+serde = { version = "1.0", features = ["derive"] }
+serde_derive = "1.0.142"
+serde_json = "1.0.85"
