@@ -1,4 +1,5 @@
 pub mod data;
+pub mod ipfs;
 
 use crate::config::Config;
 

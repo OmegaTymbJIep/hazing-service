@@ -1,6 +1,6 @@
-use sqlx::PgPool;
-use crate::MigrateMode;
 use crate::config::Config;
+use crate::MigrateMode;
+use sqlx::PgPool;
 
 pub trait Migration {
     fn migrate_table(&self) -> String;
@@ -8,7 +8,7 @@ pub trait Migration {
 }
 
 pub async fn migrate(config: &Config, mode: MigrateMode) {
-    let table_list: [Box<dyn Migration>;0] = [];
+    let table_list: [Box<dyn Migration>; 0] = [];
 
     let mut sql: Vec<String> = Vec::new();
     match mode {
@@ -25,9 +25,11 @@ pub async fn migrate(config: &Config, mode: MigrateMode) {
     }
 
     sqlx::query(sql.join("; ").as_str())
-        .execute(&PgPool::connect(config.database.address.as_str())
-            .await
-            .expect("failed connect to postgres database"))
+        .execute(
+            &PgPool::connect(config.database.address.as_str())
+                .await
+                .expect("failed connect to postgres database"),
+        )
         .await
         .expect("failed to migrate database");
 }

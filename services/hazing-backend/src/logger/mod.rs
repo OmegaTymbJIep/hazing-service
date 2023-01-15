@@ -1,6 +1,6 @@
-use std::str::FromStr;
 use log::LevelFilter;
-use simplelog::{TermLogger, TerminalMode, ColorChoice, Config};
+use simplelog::{ColorChoice, Config, TermLogger, TerminalMode};
+use std::str::FromStr;
 
 pub fn init(level_filter: &String) {
     TermLogger::init(
@@ -8,5 +8,6 @@ pub fn init(level_filter: &String) {
         Config::default(),
         TerminalMode::Stdout,
         ColorChoice::Auto,
-    ).unwrap();
+    )
+    .unwrap();
 }
