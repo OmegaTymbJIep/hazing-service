@@ -2,6 +2,7 @@ use js_sys::{Array, Function};
 use wasm_bindgen::{JsCast, JsValue, UnwrapThrowExt};
 use wasm_bindgen_futures::JsFuture;
 
+#[derive(Clone)]
 pub struct EthereumProvider {
     raw: JsValue,
 }
@@ -77,5 +78,13 @@ impl EthereumProvider {
             .expect_throw("failed to add params property");
 
         params.into()
+    }
+
+    pub fn selected_account(&self) -> Option<JsValue> {
+        const SELECTED_ADDRESS: &str = "selectedAddress";
+
+        let account = js_sys::Reflect::get(&self.raw, &SELECTED_ADDRESS.into());
+
+        account.ok()
     }
 }

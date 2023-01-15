@@ -1,9 +1,11 @@
 pub mod ethereum;
+pub mod transaction;
 
 use ethereum::EthereumProvider;
 use js_sys::Array;
 use wasm_bindgen::JsValue;
 
+#[derive(Clone)]
 pub struct Metamask {
     eth: EthereumProvider,
 }
@@ -41,5 +43,10 @@ impl Metamask {
             .collect();
 
         Ok(accounts)
+    }
+
+    pub fn selected_account(&self) -> Option<String> {
+        // TODO:
+        self.eth.selected_account().unwrap_or_default().as_string()
     }
 }
