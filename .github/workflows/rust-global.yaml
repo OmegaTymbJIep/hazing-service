@@ -7,7 +7,7 @@ on:
     branches:
       - master
       - backend
-      - 'backend/feature/**'
+      - 'backend-feature/**'
 
 jobs:
   test_phaser:
