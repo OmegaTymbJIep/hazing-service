@@ -1,6 +1,6 @@
 [workspace]
 members = [
         # add path to new prjects here
-        # "apps/web",
+        "apps/web",
         "libs/metamask",
 ]
