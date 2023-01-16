@@ -1,0 +1,19 @@
+[package]
+name = "hazing-web"
+version = "0.0.1"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wasm-bindgen = "0.2.83"
+web-sys = "0.3.60"
+js-sys = "0.3.60"
+yew = { version = "0.20.0", features = ["csr"] }
+serde = { version = "1.0", features = ["derive"] }
+serde-wasm-bindgen = "0.4"
+wasm-bindgen-futures = "0.4.33"
+metamask = { version = "0.0.1", path = "../../libs/metamask" }
+monaco = { git = "https://github.com/siku2/rust-monaco.git", branch = "master", features = ["yew-components"] }
+console_log = "0.2.0"
+log = "0.4.17"
